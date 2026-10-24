@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import MaintenanceRequest
 
 def request_form(request):
-    html = """
-        <html>
+    return render(request, 'requests_app/request_form.html')
 
-        </html>
-    """
-    return HttpResponse(html)
+def request_dashboard(request):
+    processed = MaintenanceRequest.objects.exclude(issue_type="").order_by("-created_at")
+    return render(request, "requests_app/request_dashboard.html", {"requests": processed})
