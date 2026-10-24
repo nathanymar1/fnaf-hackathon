@@ -2,9 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>View All Requests</title>
+    <title>Request Dashboard</title>
   </head>
   <body>
-    <p>This is the request dashboard</p>
+    <h1>Maintenance Requests</h1>
+
+    {% for r in requests %}
+    <div>
+      <h3>{{ r.get_issue_type_display }}</h3>
+      <p>{{ r.building }}, Room {{ r.room }}</p>
+      <p>{{ r.summary }}</p>
+      <span>{{ r.get_urgency_display }}</span>
+      <small>{{ r.created_at|date:"M j, g:i A" }}</small>
+    </div>
+    {% empty %}
+    <p>No requests yet.</p>
+    {% endfor %}
   </body>
 </html>

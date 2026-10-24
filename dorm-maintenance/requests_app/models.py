@@ -9,7 +9,6 @@ class MaintenanceRequest(models.Model):
         STRUCTURAL = "structural", "Structural"
         LOCKS = "locks", "Locks"
         PEST = "pest", "Pest Control"
-        FIRE = "fire", "Fire"
         OTHER = "other", "Other"
 
     building = models.CharField(max_length=100)

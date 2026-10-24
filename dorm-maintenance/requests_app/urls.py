@@ -5,6 +5,6 @@ from . import views
 app_name = "requests_app"
 
 urlpatterns = [
-    path("requests/", views.request_dashboard, name="list"),
+    path("dashboard/", views.request_dashboard, name="list"),
     path("submit/", views.request_form, name="submit"),
 ]
