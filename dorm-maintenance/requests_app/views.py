@@ -1,10 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def request_form(request):
-    html = """
-        <html>
+    return render(request, 'requests_app/request_form.html')
 
-        </html>
-    """
-    return HttpResponse(html)
+def request_dashboard(request):
+    return render(request, 'requests_app/request_dashboard.html')
