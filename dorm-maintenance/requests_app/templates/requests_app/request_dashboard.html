@@ -1,24 +1,47 @@
 {% load static %}
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Request Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maintenance Dashboard</title>
+    <link rel="stylesheet" href="{% static 'requests_app/style.css' %}" />
   </head>
   <body>
     <h1>Maintenance Requests</h1>
 
-    {% for r in requests %}
-    <div>
-      <h3>{{ r.get_issue_type_display }}</h3>
-      <p>{{ r.building }}, Room {{ r.room }}</p>
-      <p>{{ r.summary }}</p>
-      <span>{{ r.get_urgency_display }}</span>
-      <small>{{ r.created_at|date:"M j, g:i A" }}</small>
+    <div class="grid">
+      {% for r in requests %}
+      <div class="card">
+        <form
+          method="post"
+          action="{% url 'requests_app:delete' pk=r.pk %}"
+          class="delete-form"
+          onsubmit="return confirm('Delete this request?');"
+        >
+          {% csrf_token %}
+          <button type="submit" class="delete-btn" aria-label="Delete request">
+            &times;
+          </button>
+        </form>
+
+        <h3>{{ r.get_issue_type_display }}</h3>
+        <span class="badge badge-{{ r.urgency }}"
+          >{{ r.get_urgency_display }}</span
+        >
+
+        <p class="location">{{ r.building }}, Room {{ r.room }}</p>
+
+        <p><strong>Summary:</strong> {{ r.summary }}</p>
+
+        <p class="meta">
+          {{ r.email }}<br />
+          {{ r.created_at|date:"M j, g:i A" }}
+        </p>
+      </div>
+      {% empty %}
+      <p>No requests yet.</p>
+      {% endfor %}
     </div>
-    {% empty %}
-    <p>No requests yet.</p>
-    {% endfor %}
   </body>
 </html>

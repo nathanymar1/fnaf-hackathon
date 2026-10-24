@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'requests_app/style.css' %}" />
   </head>
   <body>
-    <form method="post">
+    <form method="post" class="request-form">
       {% csrf_token %}
 
       <label for="building">Building</label>

@@ -17,9 +17,6 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from requests_app import views
-
-app_name = "requests_app"
 
 urlpatterns = [
     path("", include("requests_app.urls")),

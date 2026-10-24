@@ -1,0 +1,19 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Thank you!</title>
+    <link rel="stylesheet" href="{% static 'requests_app/style.css' %}" />
+  </head>
+  <body>
+    <div class="message-box">
+      <h1>Thank you!</h1>
+      <p>
+        Your maintenance request has been submitted and a worker will review it.
+      </p>
+      <a href="{% url 'requests_app:submit' %}">Submit another request</a>
+    </div>
+  </body>
+</html>
